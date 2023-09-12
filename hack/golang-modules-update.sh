@@ -25,6 +25,5 @@ DIRS="./ ./hack/tools"
 for DIR in ${DIRS}; do
 	cd ${REPO_ROOT}/${DIR} && GO111MODULE=on GOPROXY=https://proxy.golang.org go mod download
 	cd ${REPO_ROOT}/${DIR} && GO111MODULE=on GOPROXY=https://proxy.golang.org go mod verify
-	cd ${REPO_ROOT}/${DIR} && GO111MODULE=on GOPROXY=https://proxy.golang.org go mod tidy
-	cd ${REPO_ROOT}/${DIR} && GO111MODULE=on GOPROXY=https://proxy.golang.org go mod vendor 
+	cd ${REPO_ROOT}/${DIR} && GO111MODULE=on GOPROXY=https://proxy.golang.org go mod vendor
 done
