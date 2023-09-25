@@ -468,7 +468,7 @@ func (s *Service) getServerImage(ctx context.Context) (*hcloud.Image, error) {
 			err.Error(),
 		)
 		return nil, err
-	}
+ 	}
 
 	return images[0], nil
 }
