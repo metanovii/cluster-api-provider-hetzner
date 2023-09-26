@@ -265,6 +265,11 @@ type HetznerBareMetalMachineStatus struct {
 	// +optional
 	Ready bool `json:"ready"`
 
+	// Phase represents the current phase of HetznerBareMetalMachineStatus actuation.
+	// E.g. Pending, Running, Terminating, Failed etc.
+	// +optional
+	Phase string `json:"phase,omitempty"`
+
 	// Conditions defines current service state of the HetznerBareMetalMachine.
 	// +optional
 	Conditions clusterv1.Conditions `json:"conditions,omitempty"`

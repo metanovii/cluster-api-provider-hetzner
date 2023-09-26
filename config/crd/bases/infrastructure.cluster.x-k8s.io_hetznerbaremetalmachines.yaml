@@ -360,6 +360,10 @@ spec:
                 description: LastUpdated identifies when this status was last observed.
                 format: date-time
                 type: string
+              phase:
+                description: Phase represents the current phase of HetznerBareMetalMachineStatus
+                  actuation. E.g. Pending, Running, Terminating, Failed etc.
+                type: string
               ready:
                 description: Ready is the state of the hetznerbaremetalmachine.
                 type: boolean
