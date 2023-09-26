@@ -96,6 +96,7 @@ func (s *Service) Reconcile(ctx context.Context) (res reconcile.Result, err erro
 	}
 
 	conditions.MarkTrue(s.scope.BareMetalMachine, infrav1.BootstrapReadyCondition)
+	s.scope.BareMetalMachine.Status.Phase = string(clusterv1.MachinePhasePending)
 
 	// Check if the bareMetalmachine is associated with a host already. If not, associate a new host.
 	if !s.scope.BareMetalMachine.HasHostAnnotation() {
@@ -119,6 +120,7 @@ func (s *Service) Reconcile(ctx context.Context) (res reconcile.Result, err erro
 
 	// set machine ready
 	s.scope.BareMetalMachine.Status.Ready = true
+	s.scope.BareMetalMachine.Status.Phase = string(clusterv1.MachinePhaseRunning)
 
 	return res, nil
 }
@@ -189,6 +191,8 @@ func (s *Service) Delete(ctx context.Context) (res reconcile.Result, err error) 
 		"HetznerBareMetalMachine with name %s deleted",
 		s.scope.Name(),
 	)
+	s.scope.Machine.Status.Phase = string(clusterv1.MachinePhaseDeleted)
+
 	return res, nil
 }
 
@@ -306,6 +310,11 @@ func (s *Service) associate(ctx context.Context) error {
 	}
 
 	s.ensureMachineAnnotation(host)
+
+	if host.Spec.Status.ProvisioningState == infrav1.StateProvisioned {
+		s.scope.Machine.Status.Phase = string(clusterv1.MachinePhaseProvisioned)
+	}
+
 	return nil
 }
 
