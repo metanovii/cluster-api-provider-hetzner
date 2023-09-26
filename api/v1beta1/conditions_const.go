@@ -93,6 +93,11 @@ const (
 )
 
 const (
+	// HostReadyCondition reports on whether the HetznerBareMetalHost is ready or not.
+	HostReadyCondition clusterv1.ConditionType = "HostReady"
+)
+
+const (
 	// TargetClusterReadyCondition reports on whether the kubeconfig in the target cluster is ready.
 	TargetClusterReadyCondition clusterv1.ConditionType = "TargetClusterReady"
 	// KubeConfigNotFoundReason indicates that the Kubeconfig could not be found.
