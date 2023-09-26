@@ -12,10 +12,6 @@ concurrency:
 jobs:
   cache-cleaner:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        include:
-          - name: symin
     steps:
       # Load Golang cache build from GitHub
       - name: Load Caph Golang cache build from GitHub
